@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15efc670802ca574697ce820a01cff21, type: 3}
+  m_Name: Player000
+  m_EditorClassIdentifier: 
+  _maxHealth: 300
+  _maxBonusHealth: 200
+  _moveSpeed: 10
+  _sprintSpeed: 15
+  _crouchHeight: 1
+  _gravity: -9.81
+  _jumpSFX: {fileID: 8300000, guid: 9b05f0ea6b76f53429c25c69757686b2, type: 3}
+  _hitSFX: {fileID: 8300000, guid: f884ab8d9bc274b42aa8f2ead249de57, type: 3}
+  _deathSFX: {fileID: 8300000, guid: 8aaa890b0a30f2b4d811983fcbd72e2b, type: 3}

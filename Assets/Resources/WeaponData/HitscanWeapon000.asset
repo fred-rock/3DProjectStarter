@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 645bf13b8bd87a346b633066e01cc190, type: 3}
+  m_Name: HitscanWeapon000
+  m_EditorClassIdentifier: 
+  _damage: 7
+  _fireRate: 1
+  _ammoType: {fileID: 11400000, guid: 76c6c792530867c42b48afa87ae5a5f2, type: 2}
+  _ammoConsumedPerSingleUse: 1
+  _equipSFX: {fileID: 8300000, guid: 28eb944a8293b5243a386e19cd2d39bd, type: 3}
+  _fireSFX: {fileID: 8300000, guid: d6158b71411f78a4a94dceacdf9a6ba2, type: 3}
+  _range: 15

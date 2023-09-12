@@ -40,7 +40,7 @@ public class PlayerCombatReadyState : IState
                 _player.EnterDeathState();
             }
 
-            _player.FXModule.HitFX();
+            _player.FXModule.HurtFX();
         }
 
         if (_player.InputModule.JumpAction.WasPerformedThisFrame())

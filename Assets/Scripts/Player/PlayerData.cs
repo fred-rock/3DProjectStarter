@@ -15,7 +15,7 @@ public class PlayerData : ScriptableObject
     [SerializeField] private float _gravity = -9.81f;
     [Header("SFX")]
     [SerializeField] private AudioClip _jumpSFX;
-    [SerializeField] private AudioClip _hitSFX;
+    [SerializeField] private AudioClip _hurtSFX;
     [SerializeField] private AudioClip _deathSFX;
 
     //[Header("Character Controller settings")]
@@ -41,6 +41,6 @@ public class PlayerData : ScriptableObject
     //public float Radius { get { return _radius; } }
     //public float Height { get { return _height;} }
     public AudioClip JumpSFX { get { return _jumpSFX; } }
-    public AudioClip HitSFX { get { return _hitSFX; } }
+    public AudioClip HurtSFX { get { return _hurtSFX; } }
     public AudioClip DeathSFX { get { return _deathSFX; } }
 }

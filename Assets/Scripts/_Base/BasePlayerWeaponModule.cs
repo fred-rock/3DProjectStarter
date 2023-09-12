@@ -9,5 +9,6 @@ public abstract class BasePlayerWeaponModule : MonoBehaviour
     public virtual void Initialize(Player player) { }
     public virtual void Unequip() { }
     public virtual void Equip() { }
+    public virtual void AttemptFire() { }
     public virtual void Fire() { }
 }

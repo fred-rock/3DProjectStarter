@@ -1,15 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerHitscanWeaponModule : BasePlayerWeaponModule, IPlayerModule
 {
+    // TODO: Add in firing rate/cooldown timer
     [SerializeField] private HitscanWeaponData _hitscanWeaponData;
     [SerializeField] private GameObject _weaponModel;
     private LayerMask _hitboxLayer;
     private Player _player;
     private EnemyHitboxModule _enemyHitbox;
-    //private Transform _cameraTarget;
     private AudioSource _audioSource;
     private ParticleSystem _muzzleFlashParticles;
 
@@ -20,17 +18,34 @@ public class PlayerHitscanWeaponModule : BasePlayerWeaponModule, IPlayerModule
     private string _currentAnimationState;
     private Animator _animator;
 
+    //  Firing timer
+    private float _fireRate;
+    private float _timer;
+    private bool _canFire;
+
     public override void Initialize(Player player)
     {
         _player = player;
-        _weaponData = _hitscanWeaponData; // Will this work?
-        //_cameraTarget = _player.FirstPersonLookModule.transform;
-        //transform.SetParent(_cameraTarget, true);
+        _weaponData = _hitscanWeaponData;
         _audioSource = GetComponentInChildren<AudioSource>();
         _audioSource.playOnAwake = false;
         _muzzleFlashParticles = GetComponentInChildren<ParticleSystem>();
         _hitboxLayer = LayerMask.GetMask("Hitbox");
         _animator = GetComponentInChildren<Animator>();
+
+        // TODO: Move to the base class
+        _fireRate = _hitscanWeaponData.FireRate;
+        _timer = _fireRate;
+        _canFire = false;
+    }
+
+    private void Update()
+    {
+        _timer -= Time.deltaTime; // TODO: Move to base class
+        if (_timer < 0 )
+        {
+            //
+        }
     }
 
     public override void Equip()
@@ -61,6 +76,11 @@ public class PlayerHitscanWeaponModule : BasePlayerWeaponModule, IPlayerModule
         }
 
         base.Unequip();
+    }
+
+    public override void AttemptFire() // TODO: Move to base class
+    {
+        
     }
 
     public override void Fire()

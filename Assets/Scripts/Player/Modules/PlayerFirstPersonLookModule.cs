@@ -74,6 +74,29 @@ public class PlayerFirstPersonLookModule : MonoBehaviour, IPlayerModule
         }
     }
 
+    private void LookFromHeight(Vector2 inputVector)
+    {
+        if (_player != null)
+        {
+            // float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
+
+            // _cinemachineTargetPitch += inputVector.y * _lookSensitivity * deltaTimeMultiplier;
+
+            // TODO: Figure out what to set for pitch, with or without inputVector
+
+            _cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, _bottomClamp, _topClamp); // Don't need this???
+
+            _cinemachineCameraTarget.transform.localRotation = Quaternion.Euler(_cinemachineTargetPitch, 0f, 0f);
+
+            // _player.transform.Rotate(Vector3.up * inputVector.x * _lookSensitivity * deltaTimeMultiplier);
+        }
+    }
+
+    private void LockLookAngle()
+    {
+
+    }
+
     //private void DoZoom()
     //{
     //    if (inputActions.FPSController.Zoom.ReadValue<float>() > 0)

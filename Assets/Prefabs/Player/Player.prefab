@@ -10659,8 +10659,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 637ed71c3bf65324cb2ca3bbdbb416e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cinemachineCameraTarget: {fileID: 8760069449108777268}
-  _lookSensitivity: 1.5
+  _cinemachineCameraTarget: {fileID: 0}
+  _lookSensitivity: 1
   _bottomClamp: -90
   _topClamp: 90
   _camera: {fileID: 0}

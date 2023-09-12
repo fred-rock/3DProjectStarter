@@ -9,7 +9,6 @@ public class PlayerProjectileWeaponModule : BasePlayerWeaponModule, IPlayerModul
     [SerializeField] private ProjectileWeaponData _projectileWeaponData;
     [SerializeField] private Projectile _projectilePrefab;
     [SerializeField] private GameObject _weaponModel; // TODO: Create Weapon class that just wraps the model and animator
-    //private Transform _cameraTarget;
     private Vector3 _projectileOrigin;
     private ObjectPool _objectPool;
     private AudioSource _audioSource;
@@ -26,15 +25,13 @@ public class PlayerProjectileWeaponModule : BasePlayerWeaponModule, IPlayerModul
     public override void Initialize(Player player)
     {
         _player = player;
-        _weaponData = _projectileWeaponData; // Will this work?
-        //_cameraTarget = _player.FirstPersonLookModule.transform;
-        //transform.SetParent(_cameraTarget, true);
+        _weaponData = _projectileWeaponData;
         _objectPool = FindObjectOfType<ObjectPool>();
         _audioSource = GetComponentInChildren<AudioSource>();
         _audioSource.playOnAwake = false;
         _animator = GetComponentInChildren<Animator>();
         _muzzleFlashParticles = GetComponentInChildren<ParticleSystem>();
-}
+    }
 
     public override void Equip()
     {

@@ -1,4 +1,5 @@
-# 3D Starter Project by Tunguska Softworks
+![tunguska-logo](https://github.com/fred-rock/3DProjectStarter/assets/4206210/b875326f-bb57-4082-8517-da5b68596f41)
+# 3D Starter Project by Tunguska Softworks 
 
 This is intended as a starter project for my 3D games. It's not really intended to be an API, or and importable package. In its current state, it's a collection of modular systems to help reduce the time putting together a prototype or starting a larger game project. Right now, the priority is building features for FPP (first person perspective) games with retro inspiration, like boomer shooters, classic Bethesda-style RPGs, old-school immersive sims, and horror walking simulators.
 

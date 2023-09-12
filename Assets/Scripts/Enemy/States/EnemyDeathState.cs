@@ -15,7 +15,8 @@ public class EnemyDeathState : IState
     {
         if (_enemy.ModelAndAnimatorModule != null)
         {
-            _enemy.ModelAndAnimatorModule.HideModel();
+            _enemy.ModelAndAnimatorModule.Death();
+            //_enemy.ModelAndAnimatorModule.HideModel();
         }
 
         yield return null;

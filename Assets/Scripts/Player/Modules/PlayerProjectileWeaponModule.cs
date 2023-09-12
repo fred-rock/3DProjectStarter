@@ -22,15 +22,33 @@ public class PlayerProjectileWeaponModule : BasePlayerWeaponModule, IPlayerModul
     private string _currentAnimationState;
     private Animator _animator;
 
+    //  Firing timer
+    private float _fireRate;
+    private float _timer;
+    private bool _canFire;
+
     public override void Initialize(Player player)
     {
         _player = player;
         _weaponData = _projectileWeaponData;
+        _fireRate = _weaponData.FireRate;
+        _canFire = true;
+
         _objectPool = FindObjectOfType<ObjectPool>();
         _audioSource = GetComponentInChildren<AudioSource>();
         _audioSource.playOnAwake = false;
         _animator = GetComponentInChildren<Animator>();
         _muzzleFlashParticles = GetComponentInChildren<ParticleSystem>();
+    }
+
+    private void Update()
+    {
+        _timer += Time.deltaTime; // TODO: Move to base class
+        if (_timer > _fireRate)
+        {
+            _canFire = true;
+            _timer = 0;
+        }
     }
 
     public override void Equip()
@@ -60,6 +78,16 @@ public class PlayerProjectileWeaponModule : BasePlayerWeaponModule, IPlayerModul
         _weaponModel.gameObject.SetActive(false);
         
         base.Unequip();
+    }
+
+    public override void AttemptFire()
+    {
+        if (_canFire)
+        {
+            Fire();
+            _canFire = false;
+        }
+        base.AttemptFire();
     }
 
     public override void Fire()

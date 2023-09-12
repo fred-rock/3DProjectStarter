@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: HitscanWeapon000
   m_EditorClassIdentifier: 
   _damage: 7
-  _fireRate: 1
+  _fireRate: 2
   _ammoType: {fileID: 11400000, guid: 76c6c792530867c42b48afa87ae5a5f2, type: 2}
+  _fullClipSize: 10
   _ammoConsumedPerSingleUse: 1
   _equipSFX: {fileID: 8300000, guid: 28eb944a8293b5243a386e19cd2d39bd, type: 3}
   _fireSFX: {fileID: 8300000, guid: d6158b71411f78a4a94dceacdf9a6ba2, type: 3}
+  _clipEmptySFX: {fileID: 0}
   _range: 15

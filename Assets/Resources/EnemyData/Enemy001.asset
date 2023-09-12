@@ -17,7 +17,7 @@ MonoBehaviour:
   _moveSpeed: 4
   _pursueSpeed: 8
   _fleeSpeed: 3
-  _detectionRange: 12
+  _detectionRange: 16
   _hasRangedAttack: 1
   _projectileSpeed: 20
   _rangedDamage: 3

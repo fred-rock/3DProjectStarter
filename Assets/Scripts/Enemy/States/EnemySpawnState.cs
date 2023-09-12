@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawnState : IState
@@ -13,10 +12,13 @@ public class EnemySpawnState : IState
 
     public IEnumerator EntryState()
     {
+        // Return enemy to its original placement
         _enemy.SpawnModule.Respawn();
+
+        // Activate the enemy's model
         _enemy.ModelAndAnimatorModule.ShowModel();
+        
         yield return new WaitForSeconds(3);
-        //_enemy.ChangeState(new EnemyWanderState(_enemy));
         _enemy.EnterWanderState();
     }
 
@@ -25,11 +27,7 @@ public class EnemySpawnState : IState
         yield return null;
     }
 
-    public void FixedUpdateState()
-    {
-    }
+    public void FixedUpdateState() { }
 
-    public void UpdateState()
-    {
-    }
+    public void UpdateState() { }
 }

@@ -46,7 +46,6 @@ public class Enemy : MonoBehaviour, IStateMachine
 
     public void Initialize()
     {
-        
         MoveModule.Initialize(this);  
         SpawnModule.Initialize(this);
         ModelAndAnimatorModule.Initialize(this);

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyPursuitState : IState
@@ -14,8 +13,6 @@ public class EnemyPursuitState : IState
     public IEnumerator EntryState()
     {
         yield return null;
-        // Chase the target. Stop at melee range.
-        //_enemy.MoveModule.Pursue(_enemy.DetectTargetModule.Target, _enemy.EnemyData.MeleeRange);
     }
 
     public IEnumerator ExitState()

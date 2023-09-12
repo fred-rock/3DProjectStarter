@@ -13,7 +13,9 @@ public class EnemyFlinchState : IState
 
     public IEnumerator EntryState()
     {
-        _enemy.MoveModule.Stop();
+        _enemy.MoveModule.Stop(); // TODO: This doesn't seem to work
+
+        _enemy.ModelAndAnimatorModule.Flinch();
         yield return new WaitForSeconds(2f);
 
         _enemy.ChangeToPreviousState();
@@ -21,7 +23,6 @@ public class EnemyFlinchState : IState
 
     public IEnumerator ExitState()
     {
-        Debug.Log($"Leaving flinch state.");
         yield return null;
     }
 

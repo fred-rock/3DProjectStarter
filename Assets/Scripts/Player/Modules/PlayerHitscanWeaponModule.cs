@@ -27,24 +27,23 @@ public class PlayerHitscanWeaponModule : BasePlayerWeaponModule, IPlayerModule
     {
         _player = player;
         _weaponData = _hitscanWeaponData;
+        _fireRate = _weaponData.FireRate;
+        _canFire = true;
+
         _audioSource = GetComponentInChildren<AudioSource>();
         _audioSource.playOnAwake = false;
         _muzzleFlashParticles = GetComponentInChildren<ParticleSystem>();
         _hitboxLayer = LayerMask.GetMask("Hitbox");
         _animator = GetComponentInChildren<Animator>();
-
-        // TODO: Move to the base class
-        _fireRate = _hitscanWeaponData.FireRate;
-        _timer = _fireRate;
-        _canFire = false;
     }
 
     private void Update()
     {
-        _timer -= Time.deltaTime; // TODO: Move to base class
-        if (_timer < 0 )
+        _timer += Time.deltaTime; // TODO: Move to base class
+        if (_timer > _fireRate)
         {
-            //
+            _canFire = true;
+            _timer = 0;
         }
     }
 
@@ -80,7 +79,12 @@ public class PlayerHitscanWeaponModule : BasePlayerWeaponModule, IPlayerModule
 
     public override void AttemptFire() // TODO: Move to base class
     {
-        
+        if (_canFire)
+        {
+            Fire();
+            _canFire = false;
+        }
+        base.AttemptFire();
     }
 
     public override void Fire()

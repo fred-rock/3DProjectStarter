@@ -11,6 +11,7 @@ public class PlayerHitscanWeaponModule : BasePlayerWeaponModule, IPlayerModule
     private EnemyHitboxModule _enemyHitbox;
     //private Transform _cameraTarget;
     private AudioSource _audioSource;
+    private ParticleSystem _muzzleFlashParticles;
 
     // Optional animation fields
     public const string WEAPON_EQUIP = "equip";
@@ -27,6 +28,7 @@ public class PlayerHitscanWeaponModule : BasePlayerWeaponModule, IPlayerModule
         //transform.SetParent(_cameraTarget, true);
         _audioSource = GetComponentInChildren<AudioSource>();
         _audioSource.playOnAwake = false;
+        _muzzleFlashParticles = GetComponentInChildren<ParticleSystem>();
         _hitboxLayer = LayerMask.GetMask("Hitbox");
         _animator = GetComponentInChildren<Animator>();
     }
@@ -64,6 +66,11 @@ public class PlayerHitscanWeaponModule : BasePlayerWeaponModule, IPlayerModule
     public override void Fire()
     {
         FireRaycast();
+
+        if (_muzzleFlashParticles != null && !_muzzleFlashParticles.isPlaying)
+        {
+            _muzzleFlashParticles.Play();
+        }
 
         if (_audioSource != null)
         {

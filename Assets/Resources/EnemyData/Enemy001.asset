@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6517cb90ce129b04ea4c28a53aa4229b, type: 3}
-  m_Name: Enemy000
+  m_Name: Enemy001
   m_EditorClassIdentifier: 
   _type: Enemy
   _maxHealth: 25
   _moveSpeed: 4
   _pursueSpeed: 8
   _fleeSpeed: 3
-  _detectionRange: 20
+  _detectionRange: 12
   _hasRangedAttack: 1
   _projectileSpeed: 20
   _rangedDamage: 3
@@ -28,7 +28,7 @@ MonoBehaviour:
   _meleeDamage: 3
   _meleeWindupTime: 1
   _meleeRange: 6
-  _rangedAttackSound: {fileID: 8300000, guid: a833f2961174f47459c87ac19b3327c9, type: 3}
+  _rangedAttackSound: {fileID: 8300000, guid: 8c67eb97169790d4a872630647910870, type: 3}
   _meleeAttackSound: {fileID: 0}
-  _detectSound: {fileID: 8300000, guid: e723aff1a7a36fe48b9e022c8e8b176b, type: 3}
-  _deathSound: {fileID: 8300000, guid: 4f18df80a5231bf4dbf607095e57a0c0, type: 3}
+  _detectSound: {fileID: 8300000, guid: feefd66fbc9fcca42a73778dcdbbb513, type: 3}
+  _deathSound: {fileID: 8300000, guid: a4957d7335924a64d813d82946e04fa4, type: 3}

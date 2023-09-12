@@ -39,7 +39,7 @@ public class EnemyMovementModule : MonoBehaviour, IEnemyModule
     private void Update()
     {
         UpdateTargetPosition();
-        Debug.Log($"Current movement state: {_movementState}");
+        // Debug.Log($"Current movement state: {_movementState}");
 
         switch (_movementState)
         {

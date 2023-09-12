@@ -14,7 +14,8 @@ public class EnemyPursuitState : IState
     public IEnumerator EntryState()
     {
         yield return null;
-        _enemy.MoveModule.Pursue(_enemy.DetectTargetModule.Target, _enemy.EnemyData.MeleeRange);
+        // Chase the target. Stop at melee range.
+        //_enemy.MoveModule.Pursue(_enemy.DetectTargetModule.Target, _enemy.EnemyData.MeleeRange);
     }
 
     public IEnumerator ExitState()
@@ -34,14 +35,19 @@ public class EnemyPursuitState : IState
             _enemy.EnterFlinchState();
         }
 
-        // TODO: Add a "confrontation range" variable - a number between minimum stopping distance and maximum. Pick range randomly. Once the enemy stops, then evaluate which state to transition to.
+        // Chase the target. Stop at melee range.
+        _enemy.MoveModule.Pursue(_enemy.DetectTargetModule.Target, _enemy.EnemyData.MeleeRange);
 
-        //if (_enemy.DetectTargetModule.CurrentDistanceToTarget >= _enemy.EnemyData.MinimumRangedEngagementDistance && _enemy.DetectTargetModule.CurrentDistanceToTarget < _enemy.EnemyData.MaximumRangedEngagementDistance)
-        //{
-        //    _enemy.EnterRangedAttackState();
-        //}
-        
-        //_enemy.MoveModule.Pursue(_enemy.DetectTargetModule.Target, _enemy.EnemyData.MeleeRange);
+        // Check distance between enemy and target.
+        float targetDistance = _enemy.DetectTargetModule.CurrentDistanceToTarget;
+
+        // Pick a confrontation distance.
+        float confrontationDistance = Random.Range(_enemy.EnemyData.MinimumRangedEngagementDistance, _enemy.EnemyData.MaximumRangedEngagementDistance);
+
+        if (targetDistance < confrontationDistance)
+        {
+            _enemy.EnterRangedAttackState();
+        }
     }
 
     public void FixedUpdateState() { }

@@ -35,16 +35,32 @@ public class EnemyWanderState : IState
             _enemy.EnterFlinchState();
         }
 
+        // Wander aimlessly
         _enemy.MoveModule.Wander();
+
+        // Try to detect player
         _enemy.DetectTargetModule.Detect();
+        bool isPlayerDetected = _enemy.DetectTargetModule.IsPlayerDetected;
 
-        // TODO: Check distance between enemy and target. If distance is between min and max ranged distance, switch to ranged attack. If not, then switch to pursuit state.
-
-        if (_enemy.DetectTargetModule.IsPlayerDetected)
+        if (isPlayerDetected)
         {
+            // Player enemy bark
             _enemy.FXModule.DetectPlayerFX();
 
-            _enemy.EnterPursuitState();
+            // Check distance between enemy and target.
+            float targetDistance = _enemy.DetectTargetModule.CurrentDistanceToTarget;
+
+            // If distance is between min and max ranged distance, switch to ranged attack.
+            if (targetDistance > _enemy.EnemyData.MinimumRangedEngagementDistance && targetDistance < _enemy.EnemyData.MaximumRangedEngagementDistance)
+            {
+                _enemy.EnterRangedAttackState();
+            }
+
+            // If not, then switch to pursuit state.
+            if (targetDistance > _enemy.EnemyData.MaximumRangedEngagementDistance)
+            {
+                _enemy.EnterPursuitState();
+            }
         }
     }
 }

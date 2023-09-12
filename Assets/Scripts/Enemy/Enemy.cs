@@ -63,6 +63,7 @@ public class Enemy : MonoBehaviour, IStateMachine
         if (_currentState != null)
         {
             _currentState.UpdateState();
+            // Debug.Log($"Current state {_currentState}");
         }
     }
 

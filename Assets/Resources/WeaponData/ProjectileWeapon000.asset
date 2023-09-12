@@ -17,7 +17,7 @@ MonoBehaviour:
   _ammoType: {fileID: 11400000, guid: d3f09e41624c1054ba6219d6a88671a8, type: 2}
   _ammoConsumedPerSingleUse: 1
   _equipSFX: {fileID: 8300000, guid: 28eb944a8293b5243a386e19cd2d39bd, type: 3}
-  _fireSFX: {fileID: 8300000, guid: 8c67eb97169790d4a872630647910870, type: 3}
+  _fireSFX: {fileID: 8300000, guid: bb37bd30b79106a498b72761742acc83, type: 3}
   _projectileSpeed: 20
   _splashRadius: 3
   _damagesEnemy: 1

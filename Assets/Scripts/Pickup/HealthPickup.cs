@@ -14,6 +14,8 @@ public class HealthPickup : BasePickup
             {
                 _player.HealthModule.IncreaseCurrentHealth(_amount);
 
+                PlayPickupFX();
+
                 Destroy(gameObject);
             }
         }

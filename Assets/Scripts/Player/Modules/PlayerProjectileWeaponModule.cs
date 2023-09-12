@@ -13,6 +13,7 @@ public class PlayerProjectileWeaponModule : BasePlayerWeaponModule, IPlayerModul
     private Vector3 _projectileOrigin;
     private ObjectPool _objectPool;
     private AudioSource _audioSource;
+    private ParticleSystem _muzzleFlashParticles;
     private Player _player;
 
     // Optional animation fields
@@ -32,7 +33,8 @@ public class PlayerProjectileWeaponModule : BasePlayerWeaponModule, IPlayerModul
         _audioSource = GetComponentInChildren<AudioSource>();
         _audioSource.playOnAwake = false;
         _animator = GetComponentInChildren<Animator>();
-    }
+        _muzzleFlashParticles = GetComponentInChildren<ParticleSystem>();
+}
 
     public override void Equip()
     {
@@ -66,6 +68,11 @@ public class PlayerProjectileWeaponModule : BasePlayerWeaponModule, IPlayerModul
     public override void Fire()
     {
         UpdateProjectileOrigin();
+
+        if (_muzzleFlashParticles != null && !_muzzleFlashParticles.isPlaying)
+        {
+            _muzzleFlashParticles.Play();
+        }
 
         if (_audioSource != null)
         {

@@ -15,6 +15,8 @@ public class AmmoPickup : BasePickup
             {
                 _player.AmmoModule.Increase(_ammoType, _amount);
 
+                PlayPickupFX();
+
                 Destroy(gameObject);
             }
         }

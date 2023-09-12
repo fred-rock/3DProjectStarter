@@ -3,19 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
-[RequireComponent(typeof(Rigidbody))]
 public abstract class BasePickup : MonoBehaviour
 {
+    [SerializeField] private AudioClip _pickupSFX;
     private Collider _collider;
-    private Rigidbody _rigidbody;
     protected Player _player;
+    protected SFXPlayer _sfxPlayer;
 
     private void Awake()
     {
         _collider = GetComponent<Collider>();
         _collider.isTrigger = true;
-        _rigidbody = GetComponent<Rigidbody>();
-        _rigidbody.isKinematic = true;
+        _sfxPlayer = FindObjectOfType<SFXPlayer>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -29,4 +28,12 @@ public abstract class BasePickup : MonoBehaviour
     }
 
     public virtual void Pickup() { }
+
+    protected void PlayPickupFX()
+    {
+        if (_sfxPlayer != null)
+        {
+            _sfxPlayer.PlaySFX(_pickupSFX);
+        }
+    }
 }

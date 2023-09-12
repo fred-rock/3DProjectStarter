@@ -15,7 +15,7 @@ public class PlayerFirstPersonMovementModule : BaseMovementModule, IPlayerModule
     // Movement Vars
     private Vector3 _velocity;
     public float _gravity = -9.81f;
-    private bool _grounded;
+    private bool _isGrounded;
 
     // Crouch Vars
     private float _initHeight;
@@ -30,6 +30,8 @@ public class PlayerFirstPersonMovementModule : BaseMovementModule, IPlayerModule
     private float _fallTimeoutDelta;
 
     public GameObject _cinemachineCameraTarget; // Keep in Movement module, keep this in so that it can be moved with the crouch method
+
+    public override bool IsGrounded { get { return _isGrounded; } }
 
     private bool IsCurrentDeviceMouse // Make this actually check for the mouse
     {
@@ -80,7 +82,7 @@ public class PlayerFirstPersonMovementModule : BaseMovementModule, IPlayerModule
 
     public override void Jump()
     {
-        if (_grounded)
+        if (_isGrounded)
         {
             _fallTimeoutDelta = _fallTimeout;
 
@@ -115,12 +117,12 @@ public class PlayerFirstPersonMovementModule : BaseMovementModule, IPlayerModule
 
     private void CheckGround()
     {
-        _grounded = _controller.isGrounded;
+        _isGrounded = _controller.isGrounded;
     }
 
     private void CheckDownwardVelocity()
     {
-        if (_grounded && _velocity.y < 0)
+        if (_isGrounded && _velocity.y < 0)
         {
             _velocity.y = -2f;
         }

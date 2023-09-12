@@ -86,7 +86,7 @@ public class Enemy : MonoBehaviour, IStateMachine
 
     public void ChangeToPreviousState()
     {
-        Debug.Log($"Previous state is: {_previousState}. Current state is {_currentState}");
+        // Debug.Log($"Previous state is: {_previousState}. Current state is {_currentState}");
         ChangeState(_previousState);
     }
 
@@ -116,10 +116,7 @@ public class Enemy : MonoBehaviour, IStateMachine
         ChangeState(new EnemyRangedAttackState(this));
     }
 
-    public void EnterMeleeAttackState()
-    {
-        //
-    }
+    public void EnterMeleeAttackState() { }
 
     public void EnterFlinchState()
     {

@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class HUDCanvas : MonoBehaviour
 {
+    [SerializeField] private AmmoType _ammoType_1;
+    [SerializeField] private TextMeshProUGUI _ammoText_1;
+    [SerializeField] private AmmoType _ammoType_2;
+    [SerializeField] private TextMeshProUGUI _ammoText_2;
     [SerializeField] private TextMeshProUGUI _healthText;
     [SerializeField] private RectTransform _deathScreen;
     [SerializeField] private RectTransform _hurtScreen;
@@ -30,6 +34,9 @@ public class HUDCanvas : MonoBehaviour
         {
             HideDeathScreen();
         }
+
+        _ammoText_1.text = _player.AmmoModule.GetCurrentAmount(_ammoType_1).ToString();
+        _ammoText_2.text = _player.AmmoModule.GetCurrentAmount(_ammoType_2).ToString();
     }
 
     private void ShowDeathScreen()

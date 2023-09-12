@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 public class PlayerCombatReadyState : IState
 {
@@ -22,10 +20,7 @@ public class PlayerCombatReadyState : IState
         yield return null;
     }
 
-    public void FixedUpdateState()
-    {
-        //
-    }
+    public void FixedUpdateState() { }
 
     public void UpdateState()
     {
@@ -46,7 +41,11 @@ public class PlayerCombatReadyState : IState
         if (_player.InputModule.JumpAction.WasPerformedThisFrame())
         {
             _player.MovementModule.Jump();
-            _player.FXModule.JumpFX();
+
+            if (_player.MovementModule.IsGrounded)
+            {
+                _player.FXModule.JumpFX();
+            }
         }
 
         if (_player.InputModule.WeaponSwitchAction.WasPerformedThisFrame())

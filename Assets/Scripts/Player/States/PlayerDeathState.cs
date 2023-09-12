@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 public class PlayerDeathState : IState
 {
@@ -23,10 +21,7 @@ public class PlayerDeathState : IState
         yield return null;
     }
 
-    public void FixedUpdateState()
-    {
-        //
-    }
+    public void FixedUpdateState() { }
 
     public void UpdateState()
     {

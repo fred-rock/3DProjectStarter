@@ -9,7 +9,6 @@ public class PlayerInputModule : MonoBehaviour, IPlayerModule
     private Player _player;
 
     // TODO: Add in charged fire action, and crouch
-    //[SerializeField] private bool _analogMovement;
     private PlayerInput _playerInput;
     private InputAction _moveAction;
     private InputAction _sprintActionValue;
@@ -21,7 +20,6 @@ public class PlayerInputModule : MonoBehaviour, IPlayerModule
     private Vector2 _moveInputVector;
     private Vector2 _lookInputVector;
 
-    //public bool AnalogMovement { get { return _analogMovement; } }
     public InputAction MoveAction { get { return _moveAction; } }
     public Vector2 MoveInputVector { get { return _moveInputVector; } }
     public Vector2 LookInputVector { get { return _lookInputVector; } }
@@ -40,8 +38,8 @@ public class PlayerInputModule : MonoBehaviour, IPlayerModule
         _playerInput = GetComponent<PlayerInput>();
 
         _moveAction = _playerInput.actions["Move"];
-        _sprintActionValue = _playerInput.actions["Sprint"];
         _lookActionValue = _playerInput.actions["Look"];
+        _sprintActionValue = _playerInput.actions["Sprint"];
         _jumpAction = _playerInput.actions["Jump"];
         _interactAction = _playerInput.actions["Interact"];
         _fireAction = _playerInput.actions["Fire"];
@@ -57,17 +55,4 @@ public class PlayerInputModule : MonoBehaviour, IPlayerModule
     {
         _lookInputVector = inputValue.Get<Vector2>();
     }
-
-    //public void OnFire(InputValue inputValue) // WIP
-    //{
-    //    List<BasePlayerWeaponModule> weapons = new List<BasePlayerWeaponModule>();
-    //    // Fill weapons list with child objects
-    //    foreach (BasePlayerWeaponModule weapon in weapons)
-    //    {
-    //        if (weapon.enabled)
-    //        {
-    //            weapon.Fire();
-    //        }
-    //    }
-    //}
 }

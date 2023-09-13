@@ -1,39 +1,53 @@
 ![tunguska-logo](https://github.com/fred-rock/3DProjectStarter/assets/4206210/b875326f-bb57-4082-8517-da5b68596f41)
 # 3D Starter Project by Tunguska Softworks 
+This project is a framework for making small 3D games using a first person perspective. It is best suited for games with a retro inspiration, like boomer shooters, classic Bethesda-style RPGs, old-school immersive sims, and horror walking simulators. This is still in development so many features aren't fully implemented or tested yet. But if you want to try it out now, you are welcome. If you have any suggestions, please feel free to send them to me.
 
-This is intended as a starter project for my 3D games. It's not really intended to be an API, or and importable package. In its current state, it's a collection of modular systems to help reduce the time putting together a prototype or starting a larger game project. Right now, the priority is building features for FPP (first person perspective) games with retro inspiration, like boomer shooters, classic Bethesda-style RPGs, old-school immersive sims, and horror walking simulators.
+## Installation and setup
+1. Clone the repo into a folder of your choosing
+2. Add the project in Unity Hub
+3. Open the project and start creating
 
-### Input
-* This project uses the new Unity input system. Keybindings are defined by an action map in an input action asset. 
-* The PlayerInputModule centralizes the actions from the action map, and makes the input values available to other player modules.
-* Actions like movement, jumping, and firing weapons are accomplished by called the respective functions from a player state, passing in data from the input module.
+## Features
+#### Player modules
+* Modules for movement, looking, input, spawning, ground checks, health, ammo, FX, hitboxes, hitscan weapons, and projectile weapons.
+* Most modules work independently of one another. E.g. you can build a player which can move but not shoot, or shoot but not move.
+* Player objects are configured by scriptable object for convenience and ease of use.
+* The main Player class is a state machine. Player states call the functionality in the modules.
+* Player states are where unique gameplay is defined, so modify them and create new ones according to your needs. The player states that currently exist in the project are built around the use case of "boomer shooter."
 
-### Player
-* Player class is a state machine which initializes a bunch of modules which implement the IPlayerModule interface.
-* Player states mostly determine which module functions can be called by player input. E.g. While in a PlayerCombatState, the player can utilize movement, jumping, firing weapons, etc. from their respective modules, while in PlayerSpawnState, the player cannot move, jump, or fire until transitioning into PlayerCombatState.
-* Most of the settings on player modules are set by a PlayerData scriptable object. The main exceptions are weapon modules, which are set by WeaponData scriptable objects.
+#### Enemy modules
+* Modules for movement, spawning, detecting, playing animations, health, hitboxes, FX, ranged attacks, and melee attack.
+* Enemy objects are configured by scriptable object.
+* The Enemy class is a state machine which handles simple enemy AI. Enemies can wander, patrol, pursue a target, attack from a ranged or melee distance, and flinch when hit.
 
-### Enemy
-* Enemy class is a state machine which initializes a bunch of modules which implement the IEnemyModule interface.
-* Enemy states define simple AI behaviors, like wandering, pursuing, and attacking with ranged or melee.
-* Pathfinding is handled by navmesh, and enemies are navmesh agents.
-* Enemy settings are configured by an EnemyData scriptable object.
+#### Input
+* The project utilizes Unity's "new" input system, and includes an action map for first person shooter controls.
+* Input is centralized into the player input module.
 
-### Weapons
-* Weapons are player modules which inherit from the BaseWeaponModule class.
-* There are currently modules for designing hitscan and projectile-based weapon types.
-* Settings are configured by scriptable object, and there are scriptable object classes for each weapon type. However, settings for the fired projectile of a projectile-based weapon are defined on the projectile itself, using the ProjectileData scriptable object.
-* The PlayerWeaponContainerModule can house up to 9 weapons, and has multiple methods for switching weapons to support different needs.
+#### Weapons
+* Weapons are player modules based on typical weapon types, e.g. hitscan, projectile (and more coming soon!)
+* Weapon details, such as fire rate, damage, splash damage radius, ammo type and usage rate, sound effects, etc. are all configured by scriptable object.
+* The weapon container module makes it easy to build a player character who can switch between multiple weapons.
+* Projectiles are prefabs which can be pooled, and their details like damage and splash radius are set on demand.
 
-### Scene Management
-* SingletonManager is the only singleton, but can carry along with it other managers as children.
-* GameManager is intended to monitor overall game progress by keeping track of event flags, and have game functions like e.g. Start, Load, Quit.
-* LevelManager is meant to be a base class, and each level scene should have its own. It's mostly for keeping track of level events, such as keys found and which enemies are activated.
-* ObjectPool is a component for the LevelManager. Right now it just pools projectiles.
+#### Managers and Utilities
+* Game Manager keeps track of progression events, options and settings, etc. (NOT YET IMPLEMETED)
+* Level Manager keeps track of level events, like keys found and doors opened. (NOT YET IMPLEMEMTED)
+* SFX Player can play sound effects when you want to limit the audio sources in a scene.
+* Object Pool allows for pooling of projectiles in a scene.
+* Singleton Manager is the only singleton, and doesn't do anything on its own. However, you can attach other managers to it if you want to employ a singleton.
 
-### Coming soon
-* UI tools like a HUD, main menu, and level completion summary like in classic shooters.
-* Breakable objects like crates and glass.
-* Interactables, particularly doors and switches.
-* Explosions for rockets and barrels.
-* More options for player weapons, like sustained fire, charged shots, melee.
+#### Pickups
+* Health pickups increase health. Ammo pickups increase ammo.
+* The Base Pickup class can be extended to build pickups for whatever you need.
+
+#### UI
+* HUD prefab displays ammo and health, an aiming reticle, elements to show hit feedback, etc. and is loosely coupled with the Player class.
+* Game Menu handles game start, load, setting options, etc. and is loosely coupled with the Game Manager. (NOT YET IMPLEMENTED)
+
+## Future features and updates
+* Damageable items like exploding barrels and smashable crates
+* Interactables like doors and switches
+* Better systems for creating Enemy AI
+* Scriptable object-based event system
+* Better tools for handling animation

@@ -27,7 +27,7 @@ This project is a framework for making small 3D games using a first person persp
 #### Weapons
 * Weapons are player modules based on typical weapon types, e.g. hitscan, projectile (and more coming soon!)
 * Weapon details, such as fire rate, damage, splash damage radius, ammo type and usage rate, sound effects, etc. are all configured by scriptable object.
-* The weapon container module makes it easy to build a player character who can switch between multiple weapons.
+* The weapon container module is used for building a player character which needs to switch between multiple weapons.
 * Projectiles are prefabs which can be pooled, and their details like damage and splash radius are set on demand.
 
 #### Utilities and Managers

@@ -55,19 +55,7 @@ public class PlayerCombatReadyState : IState
 
         if (_player.InputModule.FireAction.WasPerformedThisFrame())
         {
-            if (_player.AmmoModule != null)
-            {
-                // TODO: Move this ammo check to the weapon module?
-                AmmoType ammoType = _player.WeaponContainerModule.CurrentWeapon.WeaponData.AmmoType;
-                int ammoUsePerSingleUse = _player.WeaponContainerModule.CurrentWeapon.WeaponData.AmmoConsumedPerSingleUse;
-                int currentAmmo = _player.AmmoModule.GetCurrentAmount(_player.WeaponContainerModule.CurrentWeapon.WeaponData.AmmoType);
-                
-                if (currentAmmo > 0)
-                {
-                    _player.WeaponContainerModule.CurrentWeapon.AttemptFire();
-                    _player.AmmoModule.Decrease(ammoType, ammoUsePerSingleUse);
-                }
-            }
+            _player.WeaponContainerModule.CurrentWeapon.AttemptFire();
         }
     }
 }

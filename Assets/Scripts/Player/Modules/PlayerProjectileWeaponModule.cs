@@ -27,6 +27,9 @@ public class PlayerProjectileWeaponModule : BasePlayerWeaponModule, IPlayerModul
     private float _timer;
     private bool _canFire;
 
+    // Optional player module
+    private PlayerAmmoModule _ammoModule;
+
     public override void Initialize(Player player)
     {
         _player = player;
@@ -39,6 +42,7 @@ public class PlayerProjectileWeaponModule : BasePlayerWeaponModule, IPlayerModul
         _audioSource.playOnAwake = false;
         _animator = GetComponentInChildren<Animator>();
         _muzzleFlashParticles = GetComponentInChildren<ParticleSystem>();
+        _ammoModule = _player.AmmoModule;
     }
 
     private void Update()
@@ -80,12 +84,37 @@ public class PlayerProjectileWeaponModule : BasePlayerWeaponModule, IPlayerModul
         base.Unequip();
     }
 
+    private bool HasAmmo()
+    {
+        if (_ammoModule != null)
+        {
+            if (_ammoModule.GetCurrentAmount(_weaponData.AmmoType) >= _weaponData.AmmoConsumedPerSingleUse)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            Debug.Log("No ammo module");
+            return true;
+        }
+    }
+
     public override void AttemptFire()
     {
-        if (_canFire)
+        if (_canFire && HasAmmo())
         {
             Fire();
             _canFire = false;
+
+            if (_ammoModule != null)
+            {
+                _ammoModule.Decrease(_weaponData.AmmoType, _weaponData.AmmoConsumedPerSingleUse);
+            }
         }
         base.AttemptFire();
     }

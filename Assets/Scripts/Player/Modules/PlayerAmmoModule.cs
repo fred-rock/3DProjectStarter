@@ -23,7 +23,7 @@ public class PlayerAmmoModule : MonoBehaviour, IPlayerModule
         if (_currentReserves.ContainsKey(reserve))
         {
             _currentReserves[reserve] += amount;
-            _currentReserves[reserve] = Mathf.Clamp(amount, 0, reserve.MaxAmount);
+            _currentReserves[reserve] = Mathf.Clamp(_currentReserves[reserve], 0, reserve.MaxAmount);
         }
     }
 

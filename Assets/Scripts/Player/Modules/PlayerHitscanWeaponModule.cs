@@ -23,6 +23,9 @@ public class PlayerHitscanWeaponModule : BasePlayerWeaponModule, IPlayerModule
     private float _timer;
     private bool _canFire;
 
+    // Optional player module
+    private PlayerAmmoModule _ammoModule;
+
     public override void Initialize(Player player)
     {
         _player = player;
@@ -35,6 +38,7 @@ public class PlayerHitscanWeaponModule : BasePlayerWeaponModule, IPlayerModule
         _muzzleFlashParticles = GetComponentInChildren<ParticleSystem>();
         _hitboxLayer = LayerMask.GetMask("Hitbox");
         _animator = GetComponentInChildren<Animator>();
+        _ammoModule = _player.AmmoModule;
     }
 
     private void Update()
@@ -77,12 +81,37 @@ public class PlayerHitscanWeaponModule : BasePlayerWeaponModule, IPlayerModule
         base.Unequip();
     }
 
-    public override void AttemptFire() // TODO: Move to base class
+    private bool HasAmmo()
     {
-        if (_canFire)
+        if (_ammoModule != null)
+        {
+            if (_ammoModule.GetCurrentAmount(_weaponData.AmmoType) >= _weaponData.AmmoConsumedPerSingleUse)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            Debug.Log("No ammo module");
+            return true;
+        }
+    }
+
+    public override void AttemptFire()
+    {
+        if (_canFire && HasAmmo())
         {
             Fire();
             _canFire = false;
+
+            if (_ammoModule != null)
+            {
+                _ammoModule.Decrease(_weaponData.AmmoType, _weaponData.AmmoConsumedPerSingleUse);
+            }
         }
         base.AttemptFire();
     }

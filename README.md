@@ -1,4 +1,4 @@
-![tunguska-logo](https://github.com/fred-rock/3DProjectStarter/assets/4206210/b875326f-bb57-4082-8517-da5b68596f41)
+![repoLogo](https://github.com/fred-rock/3DProjectStarter/assets/4206210/943d9b6a-41bc-48ef-8455-c4b4716d54b7)
 # 3D Starter Project by Tunguska Softworks 
 ![goodScreenshot](https://github.com/fred-rock/3DProjectStarter/assets/4206210/c1d15907-6933-4bdd-8d2c-7288c1bd8b36)
 

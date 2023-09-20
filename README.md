@@ -1,5 +1,7 @@
 ![tunguska-logo](https://github.com/fred-rock/3DProjectStarter/assets/4206210/b875326f-bb57-4082-8517-da5b68596f41)
 # 3D Starter Project by Tunguska Softworks 
+![goodScreenshot](https://github.com/fred-rock/3DProjectStarter/assets/4206210/c1d15907-6933-4bdd-8d2c-7288c1bd8b36)
+
 This project is a framework for making small 3D games using a first person perspective. It is best suited for games with a retro inspiration, like boomer shooters, classic Bethesda-style RPGs, old-school immersive sims, and horror walking simulators. This is still in development so many features aren't fully implemented or tested yet. But if you want to try it out now, you are welcome. If you have any suggestions, please feel free to send them to me.
 
 ## Installation and setup
